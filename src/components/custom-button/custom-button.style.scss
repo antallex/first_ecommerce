@@ -1,0 +1,50 @@
+$main-color: #3D3D3D;
+$main-color-google: #4285f4;
+
+.custom-button {
+  border: 1px solid $main-color;
+  box-shadow: inset 0 0 0 0 $main-color;
+  min-width: 165px;
+  width: auto;
+  height: 50px;
+  letter-spacing: 0.5px;
+  line-height: 50px;
+  padding: 0 35px 0 35px;
+  font-size: 15px;
+  background-color: #000;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: 'Open Sans Condensed';
+  font-weight: bolder;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out 0s;
+
+  &:hover{
+		box-shadow: inset 0 -60px 0 0 #fff;
+		color: black;
+		
+	}
+
+  &.google-sign-in {
+    box-shadow: inset 0 0 0 0 $main-color-google;
+    border: 1px solid $main-color-google;
+    background-color: $main-color-google;
+    color: white;
+
+    &:hover {
+      box-shadow: inset 0 -60px 0 0 #fff;
+		color: $main-color-google;
+
+    }
+  }
+}
+
+
+.hover-animation{
+	padding: 10px 15px;
+	border-radius: 5px;
+	
+	
+	
+	
+}

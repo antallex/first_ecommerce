@@ -1,0 +1,38 @@
+@media (prefers-reduced-motion: no-preference) {
+  .float {
+    animation: link-button-float infinite 3s ease-in-out;
+  }
+}
+
+
+@keyframes link-button-float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.logo-x{
+	margin-bottom: 50px;
+	width: 100%;
+	height: 100px;
+	
+}
+
+.hover-animation{
+	padding: 10px 15px;
+	border-radius: 5px;
+	border: 1px solid #3D3D3D;
+	box-shadow: inset 0 0 0 0 #3D3D3D;
+	transition: all 0.3s ease-in-out 0s;
+	&:hover{
+		box-shadow: inset 0 -60px 0 0 #3D3D3D;
+		color: white;
+		
+	}
+}
