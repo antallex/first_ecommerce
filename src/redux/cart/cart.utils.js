@@ -11,11 +11,12 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
     (cartItem) => cartItem.id === cartItemToAdd.id
   );
 
-
   if (existingCartItems) {
-    return cartItems.map(cartItem => 
-        cartItem.id === cartItemToAdd.id ? {...cartItem, quantity: cartItem.quantity +1}
-        : cartItem);
+    return cartItems.map((cartItem) =>
+      cartItem.id === cartItemToAdd.id
+        ? { ...cartItem, quantity: cartItem.quantity + 1 }
+        : cartItem
+    );
   }
 
   //if the card item is not found inside the array
@@ -23,9 +24,25 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
   //but also add in an object {...cartItemsToAdd} and we will give
   //a base quantity of 1
 
-  return [...cartItems, {...cartItemToAdd, quantity: 1}]
+  return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
 
   //quantity propriety gets attached the first time around since this if block
   //won't run when it's a new item
+};
 
+export const removeItemFromCart = (cartItems, cartItemsToRemove) => {
+
+  const existingcartItem = cartItems.find(
+    (cartItem) => cartItem.id === cartItemsToRemove.id
+  );
+
+  if (existingcartItem.quantity === 1) {
+    return cartItems.filter((cartItem) => cartItem.id !== cartItemsToRemove.id);
+  }
+
+  return cartItems.map((cartItem) =>
+    cartItem.id === cartItemsToRemove.id
+      ? { ...cartItem, quantity: cartItem.quantity - 1 }
+      : cartItem
+  );
 };

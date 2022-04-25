@@ -1,6 +1,6 @@
 import './App.css';
 import HomePage from './pages/home/homepage.component';
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import NotFoundPage from './pages/not-found/not-found-page.component';
 import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
@@ -9,17 +9,22 @@ import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import React, { Component } from 'react';
 import { onSnapshot } from 'firebase/firestore';
 import { connect } from 'react-redux';
+import { selectCurrentUser } from './redux/user/user.selectors';
+import { createStructuredSelector } from 'reselect';
 import { setCurrentUser } from './redux/user/user.actions';
+import CheckoutPage from './pages/checkout/checkout-page.component';
 
 class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
+
+    
     const { setCurrentUser } = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
-
+        
         onSnapshot(userRef, (snapShot) => {
           setCurrentUser({
             currentUser: {
@@ -32,10 +37,11 @@ class App extends Component {
       setCurrentUser(userAuth);
     });
   }
-
+  
   componentWillUnmount() {
     this.unsubscribeFromAuth();
   }
+  
 
   render() {
     return (
@@ -59,8 +65,9 @@ class App extends Component {
             /> */}
 
             <Route path='/sign-in' element={<SignInPage />} />
+            <Route path='/checkout' element={<CheckoutPage />} />
 
-            <Route path='*' element={<NotFoundPage />} />
+            <Route exact path='*' element={<NotFoundPage />} />
           </Routes>
         </BrowserRouter>
       </>
@@ -68,8 +75,8 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (props) => ({
-  currentUser: props.user.currentUser,
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
 });
 
 const mapDispatchToProps = (dispatch) => ({

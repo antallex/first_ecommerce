@@ -4,6 +4,9 @@ import './header.style.scss';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { auth } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectCartHidden } from '../../redux/cart/cart.selectors';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
@@ -38,9 +41,22 @@ function Header({ currentUser, hidden }) {
   );
 }
 
-const mapStateToProps = ({user: {currentUser}, cart: {hidden}}) => ({
-  currentUser,
-  hidden
+//createStructuredSelector()
+//will automatically pass top lvl state that we get as mapStateToProps to each selector
+//it is recommended to use instead of below example because in the future we do need to pull in more
+//that is easy because we already converted our code
+
+
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden
 });
+
+//it's equal with below. it helps to not repeat code 'state, selectCurrentUser(state), selectCarHidden(state), etc
+
+// const mapStateToProps = (state) => ({
+//   currentUser: selectCurrentUser(state),
+//   hidden: selectCartHidden(state)
+// });
 
 export default connect(mapStateToProps)(Header);
