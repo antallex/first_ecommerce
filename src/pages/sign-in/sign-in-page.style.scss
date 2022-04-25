@@ -1,7 +1,17 @@
-.sign-in-page{
-    width: 70vw;
-    display: flex;
-    justify-content: space-around;
-    
-    margin: 230px auto;
+.sign-in-page {
+  width: 70vw;
+  display: flex;
+  justify-content: space-between;
+
+  margin: 230px auto;
+}
+
+@media only screen and (max-width: 450px) {
+  .sign-in-page {
+    display: block;
+    width: auto;
+    padding: 0;
+
+    margin: 50px 0;
+  }
 }

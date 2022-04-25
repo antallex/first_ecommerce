@@ -1,5 +1,6 @@
-$main-color: #3D3D3D;
+$main-color: #3d3d3d;
 $main-color-google: #4285f4;
+$inverted-color: #fff;
 
 .custom-button {
   border: 1px solid $main-color;
@@ -14,16 +15,17 @@ $main-color-google: #4285f4;
   background-color: #000;
   color: #fff;
   text-transform: uppercase;
-  font-family: 'Open Sans Condensed';
+  font-family: "Open Sans Condensed";
   font-weight: bolder;
   cursor: pointer;
   transition: all 0.3s ease-in-out 0s;
+  display: flex;
+  justify-content: center;
 
-  &:hover{
-		box-shadow: inset 0 -60px 0 0 #fff;
-		color: black;
-		
-	}
+  &:hover {
+    box-shadow: inset 0 -60px 0 0 #fff;
+    color: black;
+  }
 
   &.google-sign-in {
     box-shadow: inset 0 0 0 0 $main-color-google;
@@ -33,18 +35,25 @@ $main-color-google: #4285f4;
 
     &:hover {
       box-shadow: inset 0 -60px 0 0 #fff;
-		color: $main-color-google;
+      color: $main-color-google;
+    }
+  }
+  
+  &.inverted {
+    box-shadow: inset 0 0 0 0 $inverted-color;
+    border: 1px solid $main-color;
+    background-color: $inverted-color;
+    color: $main-color;
 
+
+    &:hover {
+      box-shadow: inset 0 -60px 0 0 $main-color;
+      color: $inverted-color;
     }
   }
 }
 
-
-.hover-animation{
-	padding: 10px 15px;
-	border-radius: 5px;
-	
-	
-	
-	
+.hover-animation {
+  padding: 10px 15px;
+  border-radius: 5px;
 }

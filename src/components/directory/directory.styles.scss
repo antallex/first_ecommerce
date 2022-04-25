@@ -4,3 +4,10 @@
 	flex-wrap: wrap;
 	justify-content: space-between;
 }
+
+@media only screen and (max-width: 450px) {
+	.directory-menu{
+		display: block;
+		
+	}	
+}
